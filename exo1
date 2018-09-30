@@ -1,0 +1,25 @@
+# 1 Sub-Gaussian bounds
+
+1.  Pour cette premère question, le calcul est direct.
+$$ \psi (0)=ln(\mathbb{E}(1))=0$$
+
+$$\psi'(\lambda)=\frac{\mathbb{E}(\mathbb{X}e^{\lambda \mathbb{X}})}{\mathbb{E}(e^{\lambda \mathbb{X}})}$$
+$$\psi'(0)=\frac{\mathbb{E}(\mathbb{X})}{\mathbb{E}(1)}=\mu$$
+2. Une foi de plus on dérive $\psi$ et on obtient 
+$$\psi''(\lambda)=\frac{\mathbb{E}(\mathbb{X}^2 e^{\lambda \mathbb{X}})}{\mathbb{E}(e^{\lambda \mathbb{X}})}-\frac{\mathbb{E}(\mathbb{X}e^{\lambda \mathbb{X}})^2}{\mathbb{E}(e^{\lambda \mathbb{X}})^2}$$
+On suppose maintenant que $\mathbb X$ est associé à une densité de probabilité que l'on note $g(x)$.
+On pose $h(x) = \frac{g(x)e^{\lambda x}}{\int_{a}^{b}g(y)e^{\lambda y}dy}$
+On verifie que $h(x)$ est la densité de probabilité d'une variable aléatoire $\mathbb Y$ à valeur sur $[a,b]$. En effet, on a:
+$$\int_a^b h(x)dx=\frac{\int_{a}^{b}g(x)e^{\lambda x}dx}{\int_{a}^{b}g(y)e^{\lambda y}dy}=1$$
+Enfin, on remarque que $$\mathbb E(\mathbb Y)=\frac{\mathbb E(\mathbb{X}e^{\lambda \mathbb{X}})}{E(e^{\lambda \mathbb{X}})}$$
+$$\mathbb E(\mathbb Y^2)=\frac{\mathbb E(\mathbb{X}^2e^{\lambda \mathbb{X}})}{E(\mathbb{X}e^{\lambda \mathbb{X}})}$$
+On conclut que $\psi''(\lambda)=Var(\mathbb Y)$
+et donc en admettant que toute varianble aléatoire à baleur sur $[a,b]$ a une variance au plus égale à $(\frac{(b-a)}{2})^2$
+, on obtient finalement: $$sup_\lambda |\psi''(\lambda)| \le (\frac{(b-a)}{2})^2$$
+3. On pose $A=\mathbb E(e^{\lambda (\mathbb X - \mu)})=e^{\psi-\lambda \mu}$
+Pour montrer que $\mathbb X$ est sub-Gaussienne, il suffit de monter que ; $\psi(\lambda)-\lambda \mu \le \lambda^2 \sigma^2/2$
+On pose $f(\lambda)=\lambda^2 \sigma^2/2 -\psi(\lambda)+\lambda \mu$
+On a $f''(\lambda)=\sigma^2-\psi''(\lambda) \ge 0$ d'apres la question précédente, donc f' est croissante.
+$f'(\lambda)=\lambda \sigma +\mu - \psi'(\lambda) => f'(0)=0$ donc $\forall \lambda \ge 0 \ f'(\lambda) \ge 0$ donc f est croissante.
+Encore une foi $f(0)=0 => \forall \lambda \ge 0 \ f(\lambda) \ge 0$ ce qui achève notre démonstration.
+4. Pour cette dernière question, il suffit de majorer l'écart type $\sigma$ par $(b-a)/2$, comme $e^{-1/x}$ est croissante, on conclut que $$\mathbb P (|\mathbb X_n -\mathbb E (\mathbb X_n)|) \le 2e^{-t^2/2n\sigma^2}\le 2e^{-2t^2/n(b-a)^2}$$
